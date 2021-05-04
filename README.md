@@ -14,6 +14,7 @@ module trigger-execution-logger {
   aws_sqs_queue_name = "${var.application_name}-events"
 
   aws_lambda_function_name = aws_lambda_function.this.function_name
+  aws_lambda_function_iam_role_name = aws_iam_role.this.name
   batch_size = 100
   maximum_batching_window_in_seconds = 20
 }
