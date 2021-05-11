@@ -20,5 +20,7 @@ resource aws_sqs_queue main {
     maxReceiveCount = var.deadletter_max_receive_count
   })
 
+  policy = var.aws_sqs_queue_policy
+
   tags = var.tags
 }

@@ -60,3 +60,10 @@ variable aws_lambda_function_iam_role_name {
   type = string
   description = "The name of IAM role attached to Lambda function."
 }
+
+
+variable aws_sqs_queue_policy {
+  description = "AWS SQS Queue Access Policy as a JSON string. Usable, say, to allow an S3 bucket to send notifications to this queue."
+  type = string
+  default = null
+}
