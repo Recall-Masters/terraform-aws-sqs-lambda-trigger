@@ -22,5 +22,7 @@ resource aws_sqs_queue main {
 
   policy = var.aws_sqs_queue_policy
 
+  depends_on = [aws_sqs_queue.deadletter]
+
   tags = var.tags
 }
