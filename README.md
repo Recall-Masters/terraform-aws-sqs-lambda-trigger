@@ -9,9 +9,11 @@ Terraform module which accepts a Lambda function name and a few parameters. Base
 ## Usage
 
 ```hcl
-module trigger-execution-logger {
-  source = "../sqs-lambda-trigger"
-  aws_sqs_queue_name = "${var.application_name}-events"
+module trigger-my-lambda-from-s3 {
+  source = "Recall-Masters/sqs-lambda-trigger/aws"
+  version = "0.0.2"
+
+  aws_sqs_queue_name = "${local.prefix}-my-lambda-incoming-events"
 
   aws_lambda_function_name = aws_lambda_function.this.function_name
   aws_lambda_function_iam_role_name = aws_iam_role.this.name
@@ -45,6 +47,47 @@ The pattern of linking an SQS queue to a Lambda function is something that happe
 ## Future developments
 
 There should be a way to notify the development team (via Slack directly, or via Sentry which then will post to Slack) about non-empty deadletter queues. That is always something to investigate.
+
+
+## Extensions
+
+### Optional `policy` parameter usage
+
+To bind your queue to an S3 bucket, do:
+
+```hcl
+module trigger-my-lambda-from-s3 {
+  # ...
+  aws_sqs_queue_policy = data.aws_iam_policy_document.allow-s3-writing-to-sqs.json
+}
+```
+
+where
+
+```hcl
+data aws_iam_policy_document allow-s3-writing-to-sqs {
+  statement {
+    effect = "Allow"
+
+    principals {
+      identifiers = ["*"]
+      type = "*"
+    }
+
+    actions = ["sqs:SendMessage"]
+    # Here,
+    # sqs_queue_arn  = "arn:aws:sqs:*:*:${local.sqs_queue_name}"
+    # You cannot reference the module here, or you'll have a circular dependency.
+    resources = [local.sqs_queue_arn]
+
+    condition {
+      variable = "aws:SourceArn"
+      test = "ArnLike"
+      values = [local.etl_bucket_arn]
+    }
+  }
+}
+```
 
 ## Alternatives
 
