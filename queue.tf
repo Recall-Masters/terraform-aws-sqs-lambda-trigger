@@ -20,5 +20,7 @@ resource aws_sqs_queue main {
     maxReceiveCount = var.deadletter_max_receive_count
   })
 
+  depends_on = [aws_sqs_queue.deadletter]
+
   tags = var.tags
 }
