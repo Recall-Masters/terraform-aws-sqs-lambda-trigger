@@ -5,7 +5,7 @@ Terraform module which accepts a Lambda function name and a few parameters. Base
 - SQS queue for incoming events;
 - Event source mapping to trigger the provided Lambda from the aforementioned queue;
 - Deadletter queue to house messages on which Lambda failed.
-
+- CloudWatch alarm which is triggered when deadletter queue is not empty.
 ## Usage
 
 ```hcl
@@ -88,6 +88,11 @@ data aws_iam_policy_document allow-s3-writing-to-sqs {
   }
 }
 ```
+
+### Optional `alarm_actions` parameter usage
+
+Set list of actions (arn's) which will be invoked when CloudWatch alarm comes in to `ALARM` state.
+For example it can be sns topic arn.
 
 ## Alternatives
 
