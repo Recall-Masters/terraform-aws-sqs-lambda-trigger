@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_metric_alarm" "deadletter_queue_not_empty" {
   alarm_name                = "${var.aws_sqs_queue_name}-deadletter-queue-non-empty"
   comparison_operator       = "GreaterThanThreshold"
-  evaluation_periods        = "10"
+  evaluation_periods        = "1"
   threshold                 = "0"
   alarm_description         = "${var.aws_sqs_queue_name} is not empty."
   insufficient_data_actions = var.alarm_actions
@@ -19,7 +19,7 @@ resource "aws_cloudwatch_metric_alarm" "deadletter_queue_not_empty" {
     metric {
       metric_name = "ApproximateNumberOfMessagesVisible"
       namespace   = "AWS/SQS"
-      period      = "30"
+      period      = "600"
       stat        = "Sum"
       unit        = "Count"
       dimensions = {
@@ -34,7 +34,7 @@ resource "aws_cloudwatch_metric_alarm" "deadletter_queue_not_empty" {
     metric {
       metric_name = "ApproximateNumberOfMessagesNotVisible"
       namespace   = "AWS/SQS"
-      period      = "30"
+      period      = "600"
       stat        = "Sum"
       unit        = "Count"
       dimensions = {
