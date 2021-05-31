@@ -67,3 +67,9 @@ variable aws_sqs_queue_policy {
   type = string
   default = null
 }
+
+
+variable alarm_actions {
+  type = list(string)
+  default = []
+}
