@@ -4,7 +4,7 @@ resource "aws_cloudwatch_metric_alarm" "deadletter_queue_not_empty" {
   evaluation_periods        = "1"
   threshold                 = "0"
   alarm_description         = "${var.aws_sqs_queue_name} is not empty."
-  insufficient_data_actions = var.alarm_actions
+  alarm_actions             = var.alarm_actions
 
   metric_query {
     id          = "e1"
