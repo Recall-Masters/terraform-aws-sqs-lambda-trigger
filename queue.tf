@@ -10,14 +10,14 @@ locals {
 }
 
 
-resource aws_sqs_queue main {
-  name = var.aws_sqs_queue_name
+resource "aws_sqs_queue" "main" {
+  name                       = var.aws_sqs_queue_name
   visibility_timeout_seconds = local.visibility_timeout_seconds
-  delay_seconds = var.delay_seconds
+  delay_seconds              = var.delay_seconds
 
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.deadletter.arn
-    maxReceiveCount = var.deadletter_max_receive_count
+    maxReceiveCount     = var.deadletter_max_receive_count
   })
 
   policy = var.aws_sqs_queue_policy

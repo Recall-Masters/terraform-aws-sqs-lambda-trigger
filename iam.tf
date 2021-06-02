@@ -1,4 +1,4 @@
-data aws_iam_policy_document this {
+data "aws_iam_policy_document" "this" {
   # https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-queueconfig
   statement {
     effect = "Allow"
@@ -12,13 +12,13 @@ data aws_iam_policy_document this {
 }
 
 
-resource aws_iam_policy this {
-  policy = data.aws_iam_policy_document.this.json
+resource "aws_iam_policy" "this" {
+  policy      = data.aws_iam_policy_document.this.json
   description = "Grant the Lambda function the required SQS permissions."
 }
 
 
-resource aws_iam_role_policy_attachment this {
+resource "aws_iam_role_policy_attachment" "this" {
   policy_arn = aws_iam_policy.this.arn
-  role = var.aws_lambda_function_iam_role_name
+  role       = var.aws_lambda_function_iam_role_name
 }

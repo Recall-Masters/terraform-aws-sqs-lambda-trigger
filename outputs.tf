@@ -1,4 +1,4 @@
-output queue {
+output "queue" {
   value = {
     arn = aws_sqs_queue.main.arn
     id  = aws_sqs_queue.main.id
@@ -7,10 +7,10 @@ output queue {
 }
 
 
-output deadletter {
+output "deadletter" {
   value = {
     arn = aws_sqs_queue.deadletter.arn
-    id = aws_sqs_queue.deadletter.id
+    id  = aws_sqs_queue.deadletter.id
   }
   description = "Deadletter queue ARN and URL."
 }
