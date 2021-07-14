@@ -4,7 +4,10 @@ variable "aws_sqs_queue_name" {
 }
 
 variable "aws_lambda_function_to_trigger" {
-  type        = string
+  # add additional fields here if needed
+  type = object({
+    function_name = string
+  })
   description = "AWS Lambda function to trigger."
 }
 
