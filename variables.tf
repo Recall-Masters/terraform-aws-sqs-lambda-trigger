@@ -3,9 +3,9 @@ variable "aws_sqs_queue_name" {
   description = "Name of the AWS SQS queue to create and to listen to."
 }
 
-variable "aws_lambda_function_name" {
+variable "aws_lambda_function_to_trigger" {
   type        = string
-  description = "Name of the AWS Lambda function to trigger."
+  description = "AWS Lambda function to trigger."
 }
 
 
