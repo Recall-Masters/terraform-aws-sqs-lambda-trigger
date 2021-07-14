@@ -1,6 +1,6 @@
 resource "aws_lambda_event_source_mapping" "this" {
   event_source_arn = aws_sqs_queue.main.arn
-  function_name    = var.aws_lambda_function_to_trigger.name
+  function_name    = var.aws_lambda_function_to_trigger.function_name
 
   batch_size                         = var.batch_size
   maximum_batching_window_in_seconds = var.maximum_batching_window_in_seconds
