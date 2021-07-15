@@ -4,6 +4,7 @@ variable "aws_sqs_queue_name" {
 }
 
 variable "aws_lambda_function_to_trigger" {
+  # to avoid "data" directive usage which is causing 404 error for resources
   # add additional fields here if needed
   type = object({
     function_name = string
