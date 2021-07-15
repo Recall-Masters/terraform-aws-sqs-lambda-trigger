@@ -1,13 +1,14 @@
 data "aws_iam_policy_document" "this" {
   # https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-queueconfig
   statement {
-    effect = "Allow"
-    actions = [
+    effect    = "Allow"
+    actions   = [
       "sqs:ReceiveMessage",
       "sqs:DeleteMessage",
       "sqs:GetQueueAttributes",
     ]
-    resources = [aws_sqs_queue.main.arn]
+    resources = [
+      aws_sqs_queue.main.arn]
   }
 }
 

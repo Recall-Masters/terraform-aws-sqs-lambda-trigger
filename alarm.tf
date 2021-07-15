@@ -11,7 +11,7 @@ resource "aws_cloudwatch_metric_alarm" "deadletter_queue_not_empty" {
   period      = "300"
   statistic   = "Sum"
   unit        = "Count"
-  dimensions = {
+  dimensions  = {
     QueueName = "${aws_sqs_queue.deadletter.name}"
   }
 }

@@ -1,5 +1,5 @@
 output "queue" {
-  value = {
+  value       = {
     arn = aws_sqs_queue.main.arn
     id  = aws_sqs_queue.main.id
     # it's more obvious
@@ -10,7 +10,7 @@ output "queue" {
 
 
 output "deadletter" {
-  value = {
+  value       = {
     arn = aws_sqs_queue.deadletter.arn
     id  = aws_sqs_queue.deadletter.id
     url = aws_sqs_queue.deadletter.id

@@ -6,15 +6,15 @@ variable "aws_sqs_queue_name" {
 variable "aws_lambda_function_to_trigger" {
   # to avoid "data" directive usage which is causing 404 error for resources
   # add additional fields here if needed
-  type = object({
+  type        = object({
     function_name = string
-    timeout = number
+    timeout       = number
   })
   description = "AWS Lambda function to trigger."
 }
 
 variable "aws_lambda_function_iam_role" {
-  type = object({
+  type        = object({
     name = string
   })
   description = "IAM role attached to Lambda function."
