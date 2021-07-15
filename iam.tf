@@ -20,5 +20,5 @@ resource "aws_iam_policy" "this" {
 
 resource "aws_iam_role_policy_attachment" "this" {
   policy_arn = aws_iam_policy.this.arn
-  role       = var.aws_lambda_function_iam_role_name
+  role       = var.aws_lambda_function_iam_role.name
 }

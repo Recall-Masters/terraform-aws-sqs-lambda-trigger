@@ -12,6 +12,12 @@ variable "aws_lambda_function_to_trigger" {
   description = "AWS Lambda function to trigger."
 }
 
+variable "aws_lambda_function_iam_role" {
+  type = object({
+    name = string
+  })
+  description = "IAM role attached to Lambda function."
+}
 
 variable "visibility_timeout_seconds" {
   type        = number
@@ -57,12 +63,6 @@ variable "deadletter_max_receive_count" {
 variable "tags" {
   default     = {}
   description = "Tags to use for each of the created resources."
-}
-
-
-variable "aws_lambda_function_iam_role_name" {
-  type        = string
-  description = "The name of IAM role attached to Lambda function."
 }
 
 
