@@ -7,6 +7,7 @@ variable "aws_lambda_function_to_trigger" {
   # add additional fields here if needed
   type = object({
     function_name = string
+    timeout = number
   })
   description = "AWS Lambda function to trigger."
 }
