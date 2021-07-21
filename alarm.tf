@@ -6,7 +6,7 @@ resource "aws_cloudwatch_metric_alarm" "deadletter_queue_not_empty" {
   alarm_description   = "${var.aws_sqs_queue_name} is not empty."
   alarm_actions       = var.alarm_actions
 
-  metric_name = "NumberOfMessagesSent"
+  metric_name = "ApproximateNumberOfMessagesVisible"
   namespace   = "AWS/SQS"
   period      = "300"
   statistic   = "Sum"

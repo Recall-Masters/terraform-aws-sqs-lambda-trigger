@@ -11,7 +11,7 @@ Terraform module which accepts a Lambda function name and a few parameters. Base
 ```hcl
 module trigger-my-lambda-from-s3 {
   source = "Recall-Masters/sqs-lambda-trigger/aws"
-  version = "0.0.5"
+  version = "0.0.6"
 
   aws_sqs_queue_name = "${local.prefix}-my-lambda-incoming-events"
 
@@ -92,7 +92,7 @@ data aws_iam_policy_document allow-s3-writing-to-sqs {
 ### Optional `alarm_actions` parameter usage
 
 Set list of actions (arn's) which will be invoked when CloudWatch alarm comes in to `ALARM` state.
-For example it can be sns topic arn.
+For example, it can be sns topic arn.
 
 ## Alternatives
 
