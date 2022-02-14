@@ -22,6 +22,9 @@ resource "aws_sqs_queue" "main" {
 
   policy = var.aws_sqs_queue_policy
 
+  ##Enabling  SQS encryption at rest to resolve Security Hub finding
+  sqs_managed_sse_enabled = true
+
   depends_on = [aws_sqs_queue.deadletter]
 
   tags = var.tags
