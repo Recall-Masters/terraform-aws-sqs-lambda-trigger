@@ -10,8 +10,7 @@ Terraform module which accepts a Lambda function name and a few parameters. Base
 
 ```hcl
 module trigger-my-lambda-from-s3 {
-  source = "Recall-Masters/sqs-lambda-trigger/aws"
-  version = "0.0.7"
+  source = "git@github.com:Recall-Masters/terraform-aws-sqs-lambda-trigger.git?ref=0.0.7"
 
   aws_sqs_queue_name = "${local.prefix}-my-lambda-incoming-events"
 
