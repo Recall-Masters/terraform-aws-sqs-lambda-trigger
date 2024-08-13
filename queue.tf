@@ -5,7 +5,7 @@ locals {
     # Use whatever the user provided if it is not null
     var.visibility_timeout_seconds,
     # But if it is - calculate our own value
-    data.aws_lambda_function.lambda.timeout * 6,
+    var.aws_lambda_function_to_trigger.timeout * 6,
   )
 }
 
