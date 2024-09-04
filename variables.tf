@@ -3,9 +3,21 @@ variable "aws_sqs_queue_name" {
   description = "Name of the AWS SQS queue to create and to listen to."
 }
 
-variable "aws_lambda_function_name" {
-  type        = string
-  description = "Name of the AWS Lambda function to trigger."
+variable "aws_lambda_function_to_trigger" {
+  # to avoid "data" directive usage which is causing 404 error for resources
+  # add additional fields here if needed
+  type        = object({
+    function_name = string
+    timeout       = number
+  })
+  description = "AWS Lambda function to trigger."
+}
+
+variable "aws_lambda_function_iam_role" {
+  type        = object({
+    name = string
+  })
+  description = "IAM role attached to Lambda function."
 }
 
 
@@ -53,12 +65,6 @@ variable "deadletter_max_receive_count" {
 variable "tags" {
   default     = {}
   description = "Tags to use for each of the created resources."
-}
-
-
-variable "aws_lambda_function_iam_role_name" {
-  type        = string
-  description = "The name of IAM role attached to Lambda function."
 }
 
 
